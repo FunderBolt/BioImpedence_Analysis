@@ -175,6 +175,13 @@ BIA_merge$oedemaTest2_Y_N<-ifelse(BIA_merge$oedema1_FollowUp=="None",0,1)
 ### discharge, because I am not sure if last_date_FollowUp is discharge, i will leave it
 
 
+####### add in time to death
+colnames(BIA_merge)
+round(difftime(BIA_merge$last_date_FollowUp, BIA_merge$date_Admission, units="days"),digits=1)
+
+
+
+
 ##########################
 write.csv(BIA_merge, file=paste0(Sys.Date(),"_All.BIA.data_v17.csv"))
 
