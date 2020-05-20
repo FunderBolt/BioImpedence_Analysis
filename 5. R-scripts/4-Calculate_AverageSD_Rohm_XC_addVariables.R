@@ -4,10 +4,10 @@ library(dplyr)
 library(here)
 library(matrixStats)
 library(stringr)
-library(goeveg)
+
 
 ### read in dataset
-dataset <- read.csv(here("3-Data","2020-05-20_All.BIA.data_v19.csv"), row.names = 1)
+dataset <- read.csv(here("3-Data","2020-05-20_All.BIA.data_v23.csv"), row.names = 1)
 colnames(dataset)
 
 dput(colnames(dataset))
@@ -83,7 +83,7 @@ dataset$dXc.H.2.1.<-dataset$Xc.H_2-dataset$Xc.H_1
 
 ### adding CVs
 colnames(dataset)
-idata<-dataset[,152:163]
+idata<-dataset[,119:130]
 head(idata)
 ### calculate mean and sd for resistance, reactance and phase angle
 list_vars<-list(c("mean_r_ohm_1","sd_r_ohm_1"), c("mean_xc_ohm_1","sd_xc_ohm_1"),
@@ -108,6 +108,6 @@ dataset<-cbind(dataset, iidata[,-1])
 
 
 ##########################
-write.csv(dataset, file=paste0(Sys.Date(),"_All.BIA.data_v19.csv"))
+write.csv(dataset, file=paste0(Sys.Date(),"_All.BIA.data_v23.csv"))
 
 
