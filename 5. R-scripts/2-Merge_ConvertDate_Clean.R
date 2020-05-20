@@ -1,14 +1,13 @@
 # BIA data
 # Read in clinical data, clean and merge
 
-#install.packages("rlang")
 library(dplyr)
 library(here)
 library(lubridate)
 library(mgsub)
 
 
-#read in first dataframe, each iteration of the loop will append the data from the given file to this variable
+#read data
 dataset <- read.csv(here("3. Data","All.BIA.data_v16.csv"), row.names = 1)
 colnames(dataset)
 
@@ -52,7 +51,7 @@ colnames(clin_cp)<- c("subjid", "Participant", "date_Admission",
 ### convert sex variables to match
 dataset$sex
 clin_cp$sex
-clin_cp$sex<-ifelse(clin_cp$sex == 1, "Male", "Female")
+clin_cp$sex<-ifelse(clin_cp$sex == 1, "M", "F")
 
 ### convert edema variables to match
 dataset$oedema
