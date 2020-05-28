@@ -15,6 +15,12 @@ dataset$Group<-as.factor(dataset$Group)
 dataset<-dataset[!rownames(dataset) == "30001702",]
 
 
+
+
+
+
+
+
 #################### Table 1
 Tbl_1<-data.frame(1:12)
 
@@ -115,6 +121,12 @@ write.csv(Tbl_1, file=paste0(Sys.Date(),"_Table1_Participant_Characteristics_byG
 
 
 
+
+
+
+
+
+
 #################### Supplemental Table 2
 Tbl_2<-data.frame(1:12)
 
@@ -175,24 +187,10 @@ Tbl_2[,5]<- c("p",
               rep("-",2))
 
 
+#### split by SAM type
+split_perGroup<- split(SAM_data[SAM_data$kwash == "no",], f=SAM_data$Alive[SAM_data$kwash == "no"])
 
-split_perGroup<- split(SAM_data[SAM_data$kwash == "no",], f=SAM_data$Alive_1Yes.2No[SAM_data$kwash == "no"])
-
-Tbl_2[,6]<- c(paste0("Severe wasting, survived ", "n=",nrow(split_perGroup[[1]])),
-              paste0(tabyl(split_perGroup[[1]]$sex)[2,c(2)]," (", round(100*tabyl(split_perGroup[[1]]$sex)[2,c(3)],digits=0),")"),
-              paste0(tabyl(split_perGroup[[1]]$hivtest)[2,c(2)]," (", round(100*tabyl(split_perGroup[[1]]$hivtest)[2,c(4)],digits=0),")"),
-              rep("-",1),
-              paste0(round(mean(split_perGroup[[1]]$AgeMonths_Cal, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$AgeMonths_Cal, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$haz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$haz_adm, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$waz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$waz_adm, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$whz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$whz_adm, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$muac, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$muac, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$timeToStab, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$timeToStab, na.rm=T), digits=1)),
-              paste0(round(mean(split_perGroup[[1]]$dur_adm[split_perGroup[[1]]$Alive_1Yes.2No == 1], na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$dur_adm[split_perGroup[[1]]$Alive_1Yes.2No == 1], na.rm=T), digits=1)),
-              rep("-",1))
-
-
-Tbl_2[,7]<- c(paste0("Severe wasting, Died ", "n=",nrow(split_perGroup[[2]])),
+Tbl_2[,6]<- c(paste0("Severe wasting, survived ", "n=",nrow(split_perGroup[[2]])),
               paste0(tabyl(split_perGroup[[2]]$sex)[2,c(2)]," (", round(100*tabyl(split_perGroup[[2]]$sex)[2,c(3)],digits=0),")"),
               paste0(tabyl(split_perGroup[[2]]$hivtest)[2,c(2)]," (", round(100*tabyl(split_perGroup[[2]]$hivtest)[2,c(4)],digits=0),")"),
               rep("-",1),
@@ -202,32 +200,45 @@ Tbl_2[,7]<- c(paste0("Severe wasting, Died ", "n=",nrow(split_perGroup[[2]])),
               paste0(round(mean(split_perGroup[[2]]$whz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$whz_adm, na.rm=T), digits=1)),
               paste0(round(mean(split_perGroup[[2]]$muac, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$muac, na.rm=T), digits=1)),
               paste0(round(mean(split_perGroup[[2]]$timeToStab, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$timeToStab, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 1], na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 1], na.rm=T), digits=1)),
+              rep("-",1))
+
+
+Tbl_2[,7]<- c(paste0("Severe wasting, Died ", "n=",nrow(split_perGroup[[1]])),
+              paste0(tabyl(split_perGroup[[1]]$sex)[2,c(2)]," (", round(100*tabyl(split_perGroup[[1]]$sex)[2,c(3)],digits=0),")"),
+              paste0(tabyl(split_perGroup[[1]]$hivtest)[2,c(2)]," (", round(100*tabyl(split_perGroup[[1]]$hivtest)[2,c(4)],digits=0),")"),
               rep("-",1),
-              paste0(round(mean(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 2], na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 2], na.rm=T), digits=1)))
+              paste0(round(mean(split_perGroup[[1]]$AgeMonths_Cal, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$AgeMonths_Cal, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[1]]$haz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$haz_adm, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[1]]$waz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$waz_adm, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[1]]$whz_adm, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$whz_adm, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[1]]$muac, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$muac, na.rm=T), digits=1)),
+              paste0(round(mean(split_perGroup[[1]]$timeToStab, na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$timeToStab, na.rm=T), digits=1)),
+              rep("-",1),
+              paste0(round(mean(split_perGroup[[1]]$dur_adm[split_perGroup[[1]]$Alive_1Yes.2No == 2], na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[1]]$dur_adm[split_perGroup[[1]]$Alive_1Yes.2No == 2], na.rm=T), digits=1)))
 
 
-Tbl_2[,8]<- c("p", rep("-",11))
 
-
-SAM_data$Alive_1Yes.2No<-as.factor(SAM_data$Alive_1Yes.2No)
+####### difference between alive and death
+SAM_data$Alive<-as.factor(SAM_data$Alive)
 SAM_w<-SAM_data[SAM_data$kwash == "no",]
 
-Tbl_2[,8]<- c("p", signif(fisher.test(SAM_w$Alive_1Yes.2No, SAM_w$sex)[[1]], digits=2),
-              signif(fisher.test(SAM_w$Alive_1Yes.2No, SAM_w$hivtest)[[1]], digits=2),
+
+Tbl_2[,8]<- c("p", signif(fisher.test(SAM_w$Alive, SAM_w$sex)[[1]], digits=2),
+              signif(fisher.test(SAM_w$Alive, SAM_w$hivtest)[[1]], digits=2),
               rep("-",1),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$AgeMonths_Cal,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$haz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$waz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$whz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$muac,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_w$Alive_1Yes.2No~SAM_w$timeToStab,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$AgeMonths_Cal,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$haz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$waz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$whz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$muac,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_w$Alive~SAM_w$timeToStab,family=binomial)))[2,4], digits=2),
               rep("-",2))
 
 
 
 
-
-
+### for kwash
 split_perGroup<- split(SAM_data[SAM_data$kwash == "yes",], f=SAM_data$Alive_1Yes.2No[SAM_data$kwash == "yes"])
 
 Tbl_2[,9]<- c(paste0("Edematous, survived ", "n=",nrow(split_perGroup[[1]])),
@@ -259,22 +270,22 @@ Tbl_2[,10]<- c(paste0("Edematous, died ", "n=",nrow(split_perGroup[[2]])),
               rep("-",1),
               paste0(round(mean(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 2], na.rm=T),digits=1), " ± ", round(sd(split_perGroup[[2]]$dur_adm[split_perGroup[[2]]$Alive_1Yes.2No == 2], na.rm=T), digits=1)))
 
-Tbl_2[,11]<- c("p", rep("-",11))
 
 
 
+### for difference death alive in kwash
 SAM_e<-SAM_data[SAM_data$kwash == "yes",]
 
 
 Tbl_2[,11]<- c("p", signif(fisher.test(SAM_e$Alive_1Yes.2No, SAM_e$sex)[[1]], digits=2),
               signif(fisher.test(SAM_e$Alive_1Yes.2No, SAM_e$hivtest)[[1]], digits=2),
               rep("-",1),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$AgeMonths_Cal,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$haz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$waz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$whz_adm,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$muac,family=binomial)))[2,4], digits=2),
-              signif(coef(summary(glm(SAM_e$Alive_1Yes.2No~SAM_e$timeToStab,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$AgeMonths_Cal,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$haz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$waz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$whz_adm,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$muac,family=binomial)))[2,4], digits=2),
+              signif(coef(summary(glm(SAM_e$Alive~SAM_e$timeToStab,family=binomial)))[2,4], digits=2),
               rep("-",2))
 
 
