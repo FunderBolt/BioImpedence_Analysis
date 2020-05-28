@@ -12,6 +12,7 @@ colnames(dataset)
 dataset$Participant<-as.factor(dataset$Participant)
 dataset$Group<-as.factor(dataset$Group)
 
+dataset<-dataset[!rownames(dataset) == "30001702",]
 
 
 #################### Table 1
