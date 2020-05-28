@@ -17,6 +17,12 @@ dataset$Group<-as.factor(dataset$Group)
 dput(colnames(dataset))
 
 
+### exclusion of control
+dataset<-dataset[!rownames(dataset) == "30001702",]
+
+
+
+
 #select data of interest: ALL children controls included 
 dataset<-dataset %>% select(c("subid","Participant","Group","AgeMonths_Cal","kwash",
                             "haz_adm", "waz_adm", "whz_adm", "muac",
@@ -116,13 +122,6 @@ Tbl_1[11:14,5]<-c("" ,signif(p_value,2))
 
 
 Tbl_1
-
-
-
-
-
-
-
 
 
 
