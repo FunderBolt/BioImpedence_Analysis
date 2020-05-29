@@ -64,12 +64,15 @@ p1<-ggplot()+
   scale_x_continuous(limits = c(-8, 4))+
   scale_y_continuous(limits = c(0, 2200))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "R/H, ohm/m")+
 theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10),legend.position = "none")+
 #stat_smooth(aes(y=CP_data$R.H_1, x=CP_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
 #stat_smooth(aes(y=W_data$R.H_1, x=W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
 stat_smooth(aes(y=E_data$R.H_1, x=E_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
 stat_smooth(aes(y=CP_W_data$R.H_1, x=CP_W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)
 p1
+
 
 
 p2<-ggplot()+
@@ -78,7 +81,9 @@ p2<-ggplot()+
   scale_x_continuous(limits = c(-8, 4))+
   scale_y_continuous(limits = c(0, 2200))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "R/H, ohm/m")+
   theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10), legend.position = "none")+
   #stat_smooth(aes(y=CP_data$R.H_2, x=CP_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   #stat_smooth(aes(y=W_data$R.H_2, x=W_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   stat_smooth(aes(y=E_data$R.H_2, x=E_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
@@ -97,7 +102,9 @@ p3<-ggplot()+
   scale_x_continuous(limits = c(-8, 4))+
   scale_y_continuous(limits = c(0, 120))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "Xc/H, ohm/m")+
   theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10), legend.position = "none")+
   #stat_smooth(aes(y=CP_data$Xc.H_1, x=CP_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   #stat_smooth(aes(y=W_data$Xc.H_1, x=W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   stat_smooth(aes(y=E_data$Xc.H_1, x=E_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
@@ -112,7 +119,9 @@ p4<-ggplot()+
   scale_x_continuous(limits = c(-8, 4))+
   scale_y_continuous(limits = c(0, 120))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "Xc/H, ohm/m")+
   theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10), legend.position = "none")+
   #stat_smooth(aes(y=CP_data$Xc.H_2, x=CP_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   #stat_smooth(aes(y=W_data$Xc.H_2, x=W_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   stat_smooth(aes(y=E_data$Xc.H_2, x=E_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
@@ -120,39 +129,43 @@ p4<-ggplot()+
 p4
 
 
-range(idata$mean_ph_degrees_1, na.rm=TRUE)
+range(log(idata$mean_ph_degrees_1), na.rm=TRUE)
 range(idata$mean_ph_degrees_2, na.rm=TRUE)
 
 
 p5<-ggplot()+
-  geom_point(aes(y=idata$mean_ph_degrees_1, x=idata$whz_adm, colour=idata$group_kwash, shape = idata$Alive))+
+  geom_point(aes(y=log(idata$mean_ph_degrees_1), x=idata$whz_adm, colour=idata$group_kwash, shape = idata$Alive))+
   scale_colour_manual(values=c("cyan","salmon","grey50"))+
   scale_x_continuous(limits = c(-8, 4))+
-  scale_y_continuous(limits = c(0, 12))+
+  scale_y_continuous(limits = c(0, 2.5))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "log(PA), degree")+
   theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10), legend.position = "none")+
   #stat_smooth(aes(y=CP_data$mean_ph_degrees_1, x=CP_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   #stat_smooth(aes(y=W_data$mean_ph_degrees_1, x=W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
-  stat_smooth(aes(y=E_data$mean_ph_degrees_1, x=E_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
-  stat_smooth(aes(y=CP_W_data$mean_ph_degrees_1, x=CP_W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)
+  stat_smooth(aes(y=log(E_data$mean_ph_degrees_1), x=E_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
+  stat_smooth(aes(y=log(CP_W_data$mean_ph_degrees_1), x=CP_W_data$whz_adm), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)
 p5
 
 p6<-ggplot()+
-  geom_point(aes(y=idata$mean_ph_degrees_2, x=idata$zwfl_T2, colour=idata$group_kwash, shape = idata$Alive))+
+  geom_point(aes(y=log(idata$mean_ph_degrees_2), x=idata$zwfl_T2, colour=idata$group_kwash, shape = idata$Alive))+
   scale_colour_manual(values=c("cyan","salmon","grey50"))+
   scale_x_continuous(limits = c(-8, 4))+
-  scale_y_continuous(limits = c(0, 12))+
+  scale_y_continuous(limits = c(0, 2.5))+
   scale_shape_manual(values=c(16,21))+
+  labs(x = "WHZ, z-score", y = "log(PA), degree")+
   theme_bw()+
+  theme(axis.title = element_text(size = 14), axis.text=element_text(color = "black", size=10), legend.position = "none")+
   #stat_smooth(aes(y=CP_data$mean_ph_degrees_2, x=CP_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
   #stat_smooth(aes(y=W_data$mean_ph_degrees_2, x=W_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
-  stat_smooth(aes(y=E_data$mean_ph_degrees_2, x=E_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
-  stat_smooth(aes(y=CP_W_data$mean_ph_degrees_2, x=CP_W_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)
+  stat_smooth(aes(y=log(E_data$mean_ph_degrees_2), x=E_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)+
+  stat_smooth(aes(y=log(CP_W_data$mean_ph_degrees_2), x=CP_W_data$zwfl_T2), method="lm", col="grey30",lwd=1, se=TRUE,alpha=0.2)
 p6
 
 
 
 
-plot_grid(p1,p2,p3,p4,p5,p6, cols=2)
+p_all<-plot_grid(p1,p2,p3,p4,p5,p6, cols=2)
 # saves as .svg size 1000 800
-
+ggsave(file="SuplFig3_Correlation_Athro_byGroups.svg", plot=p_all, width=8, height=10)
