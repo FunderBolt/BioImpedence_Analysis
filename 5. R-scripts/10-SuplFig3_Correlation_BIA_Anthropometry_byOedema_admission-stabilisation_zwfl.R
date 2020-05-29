@@ -169,3 +169,4 @@ p6
 p_all<-plot_grid(p1,p2,p3,p4,p5,p6, cols=2)
 # saves as .svg size 1000 800
 ggsave(file="SuplFig3_Correlation_Athro_byGroups.svg", plot=p_all, width=8, height=10)
+ggsave(file="SuplFig3_Correlation_Athro_byGroups.pdf", plot=p_all, width=8, height=10)
