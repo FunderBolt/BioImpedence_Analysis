@@ -169,5 +169,5 @@ p_all<-ggarrange(p1,p2,p3,p4,p5,p6, ncol = 2, nrow =3, common.legend = TRUE, leg
 
 
 # saves as .svg size 1000 800
-ggsave(file="SuplFig3_Correlation_Athro_byGroups.svg", plot=p_all, width=8, height=10)
-ggsave(file="SuplFig3_Correlation_Athro_byGroups.pdf", plot=p_all, width=8, height=10)
+ggsave(file="SuplFig3_Correlation_Athro_byGroups_v2.svg", plot=p_all, width=10, height=9)
+ggsave(file="SuplFig3_Correlation_Athro_byGroups_v2.pdf", plot=p_all, width=10, height=9)
