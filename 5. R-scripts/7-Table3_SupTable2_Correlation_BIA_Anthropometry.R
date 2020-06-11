@@ -672,3 +672,209 @@ Tbl_2
 write.csv(Tbl_2, file=paste0(Sys.Date(),"_SuplTable2_correlations_BIA_Anthro_AfterStabilization.csv"))
 
 
+
+
+
+
+
+
+########################## 
+### Added correlations for Suplemental Figure 3
+
+
+### restrict to SAM data with edema
+idata <- dataset[dataset$Participant == "inhospital" & dataset$kwash == "yes", ]
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$R.H_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_1<-paste0("Edema present, r=", estimate["whz_adm.cor"], " (95% CI:", confint[1,"whz_adm"],",", confint[2,"whz_adm"], "); R2=",
+                round(estimate["whz_adm.cor"]^2,digits=2), "; p=", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_1
+
+
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$Xc.H_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_2<-paste0("Edema present, r = ", estimate["whz_adm.cor"], " (95% CI: ", confint[1,"whz_adm"],", ", confint[2,"whz_adm"], "); R2 = ",
+                round(estimate["whz_adm.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_2
+
+
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$mean_ph_degrees_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_3<-paste0("Edema present, r = ", estimate["whz_adm.cor"], " (95% CI: ", confint[1,"whz_adm"],", ", confint[2,"whz_adm"], "); R2 = ",
+                round(estimate["whz_adm.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_3
+
+
+
+
+############################
+### restrict to SAM data with edema
+idata <- dataset[!dataset$kwash == "yes", ]
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$R.H_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+
+wOUT_edema_1<-paste0("Edema absent: r = ", estimate["whz_adm.cor"], " (95% CI: ", confint[1,"whz_adm"],", ", confint[2,"whz_adm"], "); R2 = ",
+                round(estimate["whz_adm.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wOUT_edema_1
+
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$Xc.H_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+
+wOUT_edema_2<-paste0("Edema absent: r = ", estimate["whz_adm.cor"], " (95% CI: ", confint[1,"whz_adm"],", ", confint[2,"whz_adm"], "); R2 = ",
+                   round(estimate["whz_adm.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wOUT_edema_2
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("haz_adm", "waz_adm","whz_adm")], 2, cor.test, log(idata$mean_ph_degrees_1), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+
+wOUT_edema_3<-paste0("Edema absent: r = ", estimate["whz_adm.cor"], " (95% CI: ", confint[1,"whz_adm"],", ", confint[2,"whz_adm"], "); R2 = ",
+                   round(estimate["whz_adm.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wOUT_edema_3
+
+
+
+
+
+
+########################## 
+### Added correlations for Suplemental Figure 3
+
+### restrict to SAM data with edema
+idata <- dataset[dataset$Participant == "inhospital" & dataset$kwash == "yes", ]
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$R.H_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_4<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_4
+
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$Xc.H_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_5<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_5
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$mean_ph_degrees_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+w_edema_6<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+w_edema_6
+
+
+
+
+
+
+
+
+############################
+### restrict to SAM data without edema
+idata <- dataset[!dataset$kwash == "yes", ]
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$R.H_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+wout_edema_4<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wout_edema_4
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$Xc.H_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+wout_edema_5<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wout_edema_5
+
+
+
+###########################################
+#any differences in resistance on admission
+cor.resistance <- apply(idata[, c("zwfl_T2","zwei_T2","zwfl_T2")], 2, cor.test, log(idata$mean_ph_degrees_2), method="pearson",conf.level = 0.95)
+estimate<-sapply(cor.resistance, "[[", "estimate")
+estimate<- round(estimate,2)
+confint<-sapply(cor.resistance, "[[", "conf.int")
+confint<-round(confint,2)
+
+wout_edema_6<-paste0("Edema present, r = ", estimate["zwfl_T2.cor"], " (95% CI: ", confint[1,"zwfl_T2"],", ", confint[2,"zwfl_T2"], "); R2 = ",
+                round(estimate["zwfl_T2.cor"]^2,digits=2), "; p = ", signif(cor.resistance[[3]]$p.value, digits=2)) 
+wout_edema_6
+
+
+rbind(w_edema_1,wout_edema_1, w_edema_2,wout_edema_2,w_edema_3,wout_edema_3,
+      w_edema_4,wout_edema_4, w_edema_5,wout_edema_5,w_edema_6,wout_edema_6)

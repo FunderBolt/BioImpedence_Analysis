@@ -1,5 +1,4 @@
 # Making BIVA plots for BIA data and testing differences with Hotteling test
-
 library(Hotelling)
 library(FactoMineR)
 library(factoextra)

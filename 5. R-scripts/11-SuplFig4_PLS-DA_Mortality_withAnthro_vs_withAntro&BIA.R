@@ -89,9 +89,11 @@ outcome<-as.factor(idata$Alive)
 out.plsDA<-plsda(X,outcome, ncomp=2, scale=TRUE, mode="regression")
 out.plsDA$explained_variance
 
-#perf.out<-mixOmics::perf(out.plsDA, validation = c("loo"), progressBar = TRUE, auc=TRUE)
-#summary(perf.out)
 
+perf.out<-mixOmics::perf(out.plsDA, validation = c("loo"), progressBar = TRUE, auc=TRUE)
+summary(perf.out)
+
+perf.out$auc
 # get.confusion_matrix(truth = idata$Group_Kwa, predicted=perf.out$predict)
 # perf.out$error.rate
 # perf.out$error.rate.class
@@ -166,9 +168,9 @@ outcome<-as.factor(idata$Alive)
 out.plsDA<-plsda(X,outcome, ncomp=2, scale=TRUE, mode="regression")
 out.plsDA$explained_variance
 
-#perf.out<-mixOmics::perf(out.plsDA, validation = c("loo"), progressBar = TRUE, auc=TRUE)
-#summary(perf.out)
-
+perf.out<-mixOmics::perf(out.plsDA, validation = c("loo"), progressBar = TRUE, auc=TRUE)
+summary(perf.out)
+perf.out$auc
 # get.confusion_matrix(truth = pls.data$Group_Kwa, predicted=perf.out$predict)
 # 
 # perf.out$error.rate
